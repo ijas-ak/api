@@ -17,6 +17,7 @@ class AddtoCartButton extends StatelessWidget {
         context.read<ApiService>().addToCart(product);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
+            duration: Duration(seconds: 1),
             padding: EdgeInsets.all(12),
             content: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

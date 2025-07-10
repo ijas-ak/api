@@ -63,7 +63,7 @@ class CartTile extends StatelessWidget {
                     child: ListTile(
                       contentPadding: EdgeInsets.all(12),
                       title: Text(
-                        cart.title,
+                        cart.title.substring(0, 18),
                         style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontSize: 14,
