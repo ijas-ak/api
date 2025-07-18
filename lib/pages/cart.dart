@@ -12,6 +12,23 @@ class MyCart extends StatelessWidget {
       backgroundColor: Color(0xffF0E4D3),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        leading: Align(
+          alignment: Alignment(1, 1),
+          child: CircleAvatar(
+            radius: 26,
+            backgroundColor: Colors.black,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(4),
+                child: Text(
+                  '10%\nDiscount',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 10, color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+        ),
         title: Text(
           "My Cart",
           style: GoogleFonts.bebasNeue(

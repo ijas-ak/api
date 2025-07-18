@@ -1,6 +1,7 @@
+import 'package:api_2/controllers/provider.dart';
 import 'package:api_2/model/model.dart';
 import 'package:api_2/pages/cart.dart';
-import 'package:api_2/services/service.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,7 @@ class AddtoCartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.read<ApiService>().addToCart(product);
+        context.read<ProductProvider>().addToCart(product);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             duration: Duration(seconds: 1),

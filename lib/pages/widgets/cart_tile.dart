@@ -1,5 +1,6 @@
+import 'package:api_2/controllers/provider.dart';
 import 'package:api_2/pages/bottom_nav.dart';
-import 'package:api_2/services/service.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +10,7 @@ class CartTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ApiService>(
+    return Consumer<ProductProvider>(
       builder: (context, value, child) => Expanded(
         child: value.cartItems.isEmpty
             ? Center(
@@ -84,7 +85,7 @@ class CartTile extends StatelessWidget {
                       ),
                       trailing: IconButton(
                         onPressed: () {
-                          context.read<ApiService>().removeFromCart(index);
+                          context.read<ProductProvider>().removeFromCart(index);
                         },
                         icon: Icon(Icons.delete, color: Colors.red, size: 28),
                       ),
@@ -116,10 +117,33 @@ class TotalItems extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Consumer<ApiService>(
-                  builder: (context, value, child) => Text(
-                    "TOTAL - \$${value.total}",
-                    style: GoogleFonts.lato(color: Colors.black, fontSize: 22),
+                Consumer<ProductProvider>(
+                  builder: (context, value, child) => Row(
+                    children: [
+                      Text(
+                        "TOTAL -",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        value.total.toStringAsFixed(2),
+                        style: TextStyle(
+                          decoration: TextDecoration.lineThrough,
+                          decorationColor: Colors.black,
+                          fontSize: 17,
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Text(
+                        (value.total * 0.9).toStringAsFixed(2),
+                        style: GoogleFonts.lato(
+                          color: Colors.black,
+                          fontSize: 22,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -130,7 +154,7 @@ class TotalItems extends StatelessWidget {
           backgroundColor: Colors.amber,
           onPressed: () {},
           icon: Icon(Icons.trolley),
-          label: Consumer<ApiService>(
+          label: Consumer<ProductProvider>(
             builder: (context, value, child) => Text("${value.itemCount}"),
           ),
         ),
