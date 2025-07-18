@@ -5,10 +5,9 @@ import 'package:dio/dio.dart';
 
 class ApiService {
   Future getData() async {
-    final urlConst = UrlConst();
     try {
       final response = await Dio().get(
-        '${urlConst.baseUrl}${urlConst.productUrl}',
+        '${UrlConst.baseUrl}${UrlConst.productUrl}',
       );
       List<dynamic> jsonData = response.data;
 
